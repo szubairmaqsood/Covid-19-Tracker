@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import InfoBox from "./InfoBox";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
-//https://disease.sh/v3/covid-19/countries
+import "./App.css";
+
 function App() {
   const [countries, setCountries] = useState([]);
-  const [country,setCountry]=useState("WorldWide");
-  
+  const [country, setCountry] = useState("WorldWide");
 
   //only when pages loads as brackets isempty
   useEffect(() => {
@@ -23,16 +23,12 @@ function App() {
         });
     };
     getCountiresData();
-
   }, []);
 
-
-  const onCountryChange =( e)=>
-  {
-    const countryCode=e.target.value;
+  const onCountryChange = (e) => {
+    const countryCode = e.target.value;
     setCountry(countryCode);
-
-  }
+  };
 
   return (
     <div className="app">
@@ -43,7 +39,7 @@ function App() {
         <h1>COVID 19 TRACKER</h1>
         <FormControl className="app__dropdown">
           <Select value={country} variant="outlined" onChange={onCountryChange}>
-          <MenuItem value="WorldWide">WorldWide</MenuItem>
+            <MenuItem value="WorldWide">WorldWide</MenuItem>
             {/*}
           <Select labelId="label" id="select" value="20" variant="outlined">
             <MenuItem value="10">Ten</MenuItem>
@@ -59,6 +55,11 @@ function App() {
       </div>
 
       {/*3 info box  */}
+      <div className="app__stats">
+        <InfoBox title="Coronavirus Cases" cases="50"  total="50"></InfoBox>
+        <InfoBox title="Recovered" cases="30"  total="30"></InfoBox>
+        <InfoBox title="Deaths" cases="30"  total="30"></InfoBox>
+      </div>
       {/* Map   */}
 
       {/* Table   */}
